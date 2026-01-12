@@ -1,3 +1,4 @@
+import atexit
 from ctypes import sizeof
 import datetime
 import socket
@@ -28,11 +29,13 @@ class Server:
         self.host: str = host
         self.port: int = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.test_data_size = 100 * 1000 * 1000  # 100 MB
+        self.test_data_size = 5000 * 1000 * 1000  # 100 MB
         self.test_data: List[bytes] = data_generator(self.test_data_size)
         self.real_data_size = 0
         for t in self.test_data:
             self.real_data_size += sys.getsizeof(t)
+
+        atexit.register(self.close)
 
     def listen(self):
         self.sock.bind((self.host, self.port))

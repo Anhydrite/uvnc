@@ -36,8 +36,8 @@ def main():
             break
         data += u
         counter += 1
-    b = sys.getsizeof(data)
-    print(f"Downloaded {b} bytes")
+        b = sys.getsizeof(data) / 1000 / 1000
+        print(f"Downloaded {b} bytes")
 
 
 if __name__ == "__main__":
