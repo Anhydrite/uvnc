@@ -1,0 +1,6 @@
+
+# V0 - Base Project
+* Faire une méthode pour nevoyer une matrice 2x2 de server vers client
+* Définir ce qu'est un point et les structures de données associés
+* Faire une matrice 2x2 de noir et tester la vitesse
+* Faire une méthode pour reconstituer une image selon une matrice 2x2
