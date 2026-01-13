@@ -1,4 +1,5 @@
 import socket
+from time import sleep
 
 
 class Client:
@@ -24,20 +25,28 @@ import sys
 
 
 def main():
-    client = Client("127.0.0.1", 8080)
+    try:
+        client = Client("127.0.0.1", 8080)
 
-    client.connect()
-    data = b""
-    counter = 1
-    while True:
-        u = client.recv()
-        print(counter)
-        if not u:
-            break
-        data += u
-        counter += 1
-        b = sys.getsizeof(data) / 1000 / 1000
-        print(f"Downloaded {b} bytes")
+        client.connect()
+        data = b""
+        counter = 1
+        client.send(b"Hello!")
+        client.send(b"Hello!")
+        client.send(b"Hello!")
+        sleep(4)
+        exit()
+        while True:
+            u = client.recv()
+            print(counter)
+            if not u:
+                break
+            data += u
+            counter += 1
+            b = sys.getsizeof(data) / 1000 / 1000
+            print(f"Downloaded {b} bytes")
+    finally:
+        client.sock.close()
 
 
 if __name__ == "__main__":
